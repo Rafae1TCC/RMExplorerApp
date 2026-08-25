@@ -1,14 +1,5 @@
-//
-//  CharacterResponse.swift
-//  RMExplorerApp
-//
-//  Created by Rafael Cabrera on 8/22/26.
-//
-
-
-//
 //  Character.swift
-//  RMExplorer
+//  RMExplorerApp
 //
 //  Created by Rafael Cabrera on 8/22/26.
 //

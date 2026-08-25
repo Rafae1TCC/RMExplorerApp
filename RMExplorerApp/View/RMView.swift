@@ -1,4 +1,3 @@
-//
 //  RMView.swift
 //  RMExplorer
 //
@@ -10,6 +9,8 @@ import SwiftUI
 struct RMView: View {
 
     @StateObject private var viewModel: RMViewModel
+    @State private var isCharLoaded: Bool = false
+    @State private var isLocLoaded: Bool = false
     let role: Role
 
     init(role: Role) {
@@ -24,18 +25,30 @@ struct RMView: View {
                 .padding(.top)
 
             HStack {
-                Button("Get Characters") {
-                    Task {
-                        await viewModel.loadCharacters()
+                Button(isCharLoaded ? "Hide Characters" : "Get Characters") {
+                    if isCharLoaded {
+                        viewModel.clearCharacters()
+                        isCharLoaded = false
+                    } else {
+                        Task {
+                            await viewModel.loadCharacters()
+                            isCharLoaded = true
+                        }
                     }
                 }
                 .buttonStyle(.bordered)
 
                 // Only the Admin role sees the second endpoint's button at all.
                 if role == .admin {
-                    Button("Get Locations") {
-                        Task {
-                            await viewModel.loadLocations()
+                    Button(isLocLoaded ? "Hide Locations" : "Get Locations") {
+                        if isLocLoaded {
+                            viewModel.clearLocations()
+                            isLocLoaded = false
+                        } else {
+                            Task {
+                                await viewModel.loadLocations()
+                                isLocLoaded = true
+                            }
                         }
                     }
                     .buttonStyle(.bordered)
@@ -96,9 +109,6 @@ struct RMView: View {
             .listStyle(.insetGrouped)
         }
         .navigationTitle("RM Explorer")
-        .task {
-            await viewModel.loadCharacters()
-        }
     }
 }
 

@@ -1,12 +1,3 @@
-//
-//  LocationResponse.swift
-//  RMExplorerApp
-//
-//  Created by Rafael Cabrera on 8/22/26.
-//
-
-
-//
 //  Location.swift
 //  RMExplorer
 //

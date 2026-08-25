@@ -1,4 +1,3 @@
-//
 //  RoleSelectionView.swift
 //  RMExplorer
 //

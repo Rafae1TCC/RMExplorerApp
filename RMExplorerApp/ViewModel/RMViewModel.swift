@@ -1,12 +1,3 @@
-//
-//  RMViewModel.swift
-//  RMExplorerApp
-//
-//  Created by Rafael Cabrera on 8/22/26.
-//
-
-
-//
 //  RMViewModel.swift
 //  RMExplorer
 //
@@ -14,6 +5,7 @@
 //
 
 import Foundation
+import Combine
 
 @MainActor
 class RMViewModel: ObservableObject {
@@ -60,6 +52,18 @@ class RMViewModel: ObservableObject {
         }
 
         isLoading = false
+    }
+
+    // Clears the characters currently being displayed.
+    func clearCharacters() {
+        characters = []
+        errorMessage = ""
+    }
+
+    // Clears the locations currently being displayed.
+    func clearLocations() {
+        locations = []
+        errorMessage = ""
     }
 
     private func message(for error: RMService.NetworkError) -> String {
